@@ -56,13 +56,11 @@
         active-class="deep-purple accent-4 white--text"
         column
       >
-        <v-chip>RM</v-chip>
-        <v-chip>Jin</v-chip>
-        <v-chip>Suga</v-chip>
-        <v-chip>J-Hope</v-chip>
-        <v-chip>V</v-chip>
-        <v-chip>Jimin</v-chip>
-        <v-chip>Jeongguk</v-chip>
+        <v-chip 
+           v-for="member in members"
+          :key="member.name"
+          :value="member.name"
+          @click="selectMember">{{ member.name }} {{ getMember }}</v-chip>
       </v-chip-group>
     </v-card-text>
 
@@ -81,15 +79,31 @@
 export default {
     data: () => ({
       loading: false,
-      selection: 1,
+      selection: '',
+      members: [
+        {name : 'RM'},
+        {name : 'Jin'},
+        {name : 'Suga'},
+        {name : 'J-Hope'},
+        {name : 'V'},
+        {name : 'Jimin'},
+        {name : 'Jeongguk'}
+      ]
     }),
-
+    computed:{
+      getMember(){
+        return this.$store.getters.getSelectedMember
+      }
+    },
     methods: {
       listening () {
         this.loading = true
         window.open('https://www.youtube.com/watch?v=gdZLi9oWNZg');
         this.loading = false
       },
+      selectMember(){
+        this.$store.commit('changeMember',this.selection)
+      }
     },
 }
 </script>

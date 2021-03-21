@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MainContainer from '@/components/MainContainer'
-import Form from '@/components/Form'
-
+import Contents from '@/components/Contents'
 Vue.use(Router)
 
 export default new Router({
@@ -14,9 +13,9 @@ export default new Router({
             component: MainContainer
         },
         {
-            path: '/main',
+            path: '/member',
 
-            component: Form
+            component: Contents
         }
     ]
 })
