@@ -1,7 +1,7 @@
 <template>
-  <v-card height="100%">
+  <v-card class="absolute-style">
     <v-navigation-drawer
-    dark
+      dark
       absolute
       permanent
       right
@@ -13,7 +13,7 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>Jane Smith</v-list-item-title>
+            <v-list-item-title>Hyejin</v-list-item-title>
             <v-list-item-subtitle>Logged In</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -47,10 +47,18 @@
       return {
         items: [
           { title: 'Home', icon: 'mdi-home-city' , link: '/'},
-          { title: 'My Account', icon: 'mdi-account' , link: '/member'},
-          { title: 'Users', icon: 'mdi-account-group-outline', link: '/info' },
+          { title: 'Test1', icon: 'mdi-account' , link: '/test1'},
+          { title: 'Test2', icon: 'mdi-account-group-outline', link: '/test2' },
         ],
       }
     },
   }
 </script>
+
+
+<style>
+    .absolute-style {
+      height: 100%;
+      border-radius: 0px!important;
+    }
+</style>

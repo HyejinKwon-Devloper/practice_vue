@@ -4,7 +4,7 @@
     class="mx-auto my-12"
     max-width="374"
   >
-  <h1>{{ getMember }}</h1>
+  <h1>{{ getMember.name }}</h1>
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -15,10 +15,10 @@
 
     <v-img
       height="100%"
-      :src="require('../assets/진.jpg')"
+      :src="getMember.img"
     ></v-img>
 
-    <v-card-title>{{ getMember }}</v-card-title>
+    <v-card-title>{{ getMember.name }}</v-card-title>
 
     <v-card-text>
       <v-row
