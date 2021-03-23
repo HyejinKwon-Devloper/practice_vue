@@ -1,10 +1,10 @@
 <template>
   <v-card
     :loading="loading"
-    class="mx-auto my-12 content-box"
+    class="mx-auto my-12"
     max-width="374"
   >
-  <h1>BTS</h1>
+  <h1>뭐지2</h1>
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -12,9 +12,10 @@
         indeterminate
       ></v-progress-linear>
     </template>
+
     <v-img
       height="250"
-      :src="require('../assets/bts.jpeg')"
+      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 
     <v-card-title>Cafe Badilico</v-card-title>
@@ -92,10 +93,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" >
-  .content-box{
-    display: inline-block!important;
-    align-content: center!important;
-  }
-</style>
