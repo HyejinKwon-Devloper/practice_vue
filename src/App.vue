@@ -1,16 +1,36 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <router-view></router-view>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <v-app>
+      <v-navigation-drawer app>
+    <Navigation/>
+    </v-navigation-drawer>
+     <Header />
+      <!-- Sizes your content based upon application components -->
+      <v-main>
+        <!-- Provides the application the proper gutter -->
+        <v-container fluid>
+          <!-- If using vue-router -->
+          <router-view></router-view>
+        </v-container>
+      </v-main>
+        <Footer/>
+   
+    </v-app>
   </div>
 </template>
 
 <script>
-
-export default {
-  name: 'App',
-}
+  import Header from '@/components/Header'
+  import Footer from '@/components/Footer'
+  import Navigation from '@/components/Navigation.vue'
+  export default {
+    name: 'App',
+    components:{
+      Header,
+      Footer,
+      Navigation
+    }
+  }
 </script>
 
 <style>
@@ -20,6 +40,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%!important;
 }
+
+
 </style>
