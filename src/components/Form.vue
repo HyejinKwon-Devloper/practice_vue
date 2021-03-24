@@ -14,7 +14,7 @@
     </template>
 
     <v-img
-      height="100%"
+      contain
       :src="bts.img"
     ></v-img>
 
@@ -87,3 +87,9 @@ export default {
     },
 }
 </script>
+
+<style>
+  .resizing-img {
+    background-size: contain!important
+  }
+</style>

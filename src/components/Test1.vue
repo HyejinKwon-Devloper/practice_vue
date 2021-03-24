@@ -1,17 +1,14 @@
 <template>
     <v-card
-        :loading="loading"
         class="mx-auto my-12 content-box bts-contents"
         max-width="374"
     >
   <h1>BTS</h1>
     <v-img
-      height="250"
       :src="require('@/assets/bts.jpg')"
     ></v-img>
     <v-card-text>
       <v-chip-group
-        v-model="selection"
         active-class="deep-purple accent-4 white--text"
         column
       >
@@ -41,4 +38,6 @@ export default {
     .bts-contents
         text-align: center
         margin: 13px
+        h1
+          color: #673ab7
 </style>

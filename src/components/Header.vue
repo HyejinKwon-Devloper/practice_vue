@@ -5,7 +5,7 @@
       dark
       app
     >
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>TITLE</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

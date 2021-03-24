@@ -14,7 +14,7 @@
     </template>
 
     <v-img
-      height="100%"
+      contain
       :src="getMember.img"
     ></v-img>
 

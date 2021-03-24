@@ -11,10 +11,17 @@
         <div>
             <h1>단방향 바인딩 : {{ msg }}</h1>
             <h1>양방향 바인딩 : {{ message }}</h1>
-            <input 
+            <v-form ref="form">
+                <v-text-field
+                    v-model="message"
+                    label="여기에 입력하세요."
+                    class="short-input "
+                ></v-text-field>
+            </v-form>
+            <!-- <input 
                 placeholder="여기에 입력하세요."
                 v-model="message" 
-            />
+            /> -->
         </div>
       </v-col>
     </v-row>
@@ -39,3 +46,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .short-input {
+        width: 200px;
+        margin: auto;
+    }
+</style>
