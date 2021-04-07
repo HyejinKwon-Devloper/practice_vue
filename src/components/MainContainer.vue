@@ -1,19 +1,21 @@
 <template>
-    <Form class="content-main"/>
+  <v-container fluid>
+    <v-layout mb-4>
+      <NoticeBoard />
+    </v-layout>
+
+    <v-layout>
+      <Statistcs />
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-    import Form from '@/components/Form'
-
-    export default {   
-        components: {
-            Form
-        }
-    }
+import NoticeBoard from "@/components/noticeBoard/NoticeBoard";
+import Statistcs from "@/components/statistics/Statistics";
+export default {
+  components: { NoticeBoard, Statistcs },
+};
 </script>
 
-<style lang="sass">
-    .content-main
-        margin: 13px auto 13px auto 
-        width: 100%
-</style>
+<style lang="sass"></style>

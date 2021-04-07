@@ -1,10 +1,6 @@
 <template>
-    <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-  <h1>{{ getMember.name }}</h1>
+  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+    <h1>{{ getMember.name }}</h1>
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -13,18 +9,12 @@
       ></v-progress-linear>
     </template>
 
-    <v-img
-      contain
-      :src="getMember.img"
-    ></v-img>
+    <v-img contain :src="getMember.img"></v-img>
 
     <v-card-title>{{ getMember.name }}</v-card-title>
 
     <v-card-text>
-      <v-row
-        align="center"
-        class="mx-0"
-      >
+      <v-row align="center" class="mx-0">
         <v-rating
           :value="5"
           color="amber"
@@ -43,7 +33,11 @@
         장르 • 디스코, 팝
       </div>
 
-      <div>방탄소년단은 코로나바이러스-19로 인해 전 세계 사람들이 힘든 시간을 보내고 있으며 팬들을 위해 긍정적인 에너지를 함께 나누기를 바랜다고 언급하였다.</div>
+      <div>
+        방탄소년단은 코로나바이러스-19로 인해 전 세계 사람들이 힘든 시간을
+        보내고 있으며 팬들을 위해 긍정적인 에너지를 함께 나누기를 바랜다고
+        언급하였다.
+      </div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -51,11 +45,11 @@
 </template>
 
 <script>
-    export default {
-    computed:{
-      getMember(){
-        return this.$store.getters.getSelectedMember
-      }
-    }
-}
+export default {
+  computed: {
+    getMember() {
+      return this.$store.getters.getSelectedMember;
+    },
+  },
+};
 </script>

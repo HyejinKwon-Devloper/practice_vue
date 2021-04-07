@@ -1,10 +1,6 @@
 <template>
-  <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-  <h1>{{ bts.name }}</h1>
+  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+    <h1>{{ bts.name }}</h1>
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -13,10 +9,7 @@
       ></v-progress-linear>
     </template>
 
-    <v-img
-      contain
-      :src="bts.img"
-    ></v-img>
+    <v-img contain :src="bts.img"></v-img>
 
     <!-- <Contents/> -->
     <v-divider class="mx-4"></v-divider>
@@ -29,67 +22,61 @@
         active-class="deep-purple accent-4 white--text"
         column
       >
-        <v-chip 
-           v-for="member in members"
-          :key="member.name"
-          :value="member"
-          >{{ member.name }} </v-chip>
+        <v-chip v-for="member in members" :key="member.name" :value="member"
+          >{{ member.name }}
+        </v-chip>
       </v-chip-group>
     </v-card-text>
-
+    <Contents />
     <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="listening"
-      >
+      <v-btn color="deep-purple lighten-2" text @click="listening">
         Listen
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
-<script>
-// import Contents from '@/components/Contents'
 
+<script>
+import Contents from "@/components/Contents";
 export default {
-    // components:{
-      // Contents
-    // },
-    data: () => ({
-      loading: false,
-      selection: {},
-      members: [
-        {name : 'RM'},
-        {name : 'Jin', img: require('@/assets/Jin.jpg')},
-        {name : 'Suga'},
-        {name : 'J-Hope'},
-        {name : 'V'},
-        {name : 'Jimin'},
-        {name : 'Jeongguk'}
-      ]
-    }),
-    computed:{
-      bts: {
-        get() {
-            return this.$store.getters.getSelectedMember
-        },
-        set(value){
-          if(value) this.$store.commit('changeMember',value)
-        }
-      }
+  components: {
+    Contents,
+  },
+  data: () => ({
+    loading: false,
+    selection: {},
+    members: [
+      { name: "RM" },
+      { name: "Jin", img: require("@/assets/Jin.jpg") },
+      { name: "Suga" },
+      { name: "J-Hope" },
+      { name: "V" },
+      { name: "Jimin" },
+      { name: "Jeongguk" },
+    ],
+  }),
+  computed: {
+    bts: {
+      get() {
+        return this.$store.getters.getSelectedMember;
+      },
+      set(value) {
+        if (value) this.$store.commit("changeMember", value);
+      },
     },
-    methods: {
-      listening () {
-        this.loading = true
-        window.open('https://www.youtube.com/watch?v=gdZLi9oWNZg');
-        this.loading = false
-      }
+  },
+  methods: {
+    listening() {
+      this.loading = true;
+      window.open("https://www.youtube.com/watch?v=gdZLi9oWNZg");
+      this.loading = false;
     },
-}
+  },
+};
 </script>
 
 <style>
-  .resizing-img {
-    background-size: contain!important
-  }
+.resizing-img {
+  background-size: contain !important;
+}
 </style>

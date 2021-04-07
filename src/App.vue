@@ -1,36 +1,31 @@
 <template>
-  <div id="app">
-    <v-app>
-      <v-navigation-drawer app>
-    <Navigation/>
+  <v-app>
+    <v-navigation-drawer app>
+      <Navigation />
     </v-navigation-drawer>
-     <Header />
-      <!-- Sizes your content based upon application components -->
-      <v-main>
-        <!-- Provides the application the proper gutter -->
-        <v-container fluid>
-          <!-- If using vue-router -->
-          <router-view></router-view>
-        </v-container>
-      </v-main>
-        <Footer/>
-   
-    </v-app>
-  </div>
+    <Header />
+    <!-- app-bar -->
+    <!-- Sizes your content based upon application components -->
+    <v-main>
+      <!-- Provides the application the proper gutter -->
+      <router-view></router-view>
+    </v-main>
+    <Footer />
+  </v-app>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
-  import Navigation from '@/components/Navigation.vue'
-  export default {
-    name: 'App',
-    components:{
-      Header,
-      Footer,
-      Navigation
-    }
-  }
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation.vue";
+export default {
+  name: "App",
+  components: {
+    Header,
+    Footer,
+    Navigation,
+  },
+};
 </script>
 
 <style>
@@ -40,8 +35,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%!important;
+  height: 100% !important;
 }
-
-
 </style>
