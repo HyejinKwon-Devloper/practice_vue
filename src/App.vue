@@ -1,13 +1,8 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
-      <Navigation />
-    </v-navigation-drawer>
-    <Header />
-    <!-- app-bar -->
-    <!-- Sizes your content based upon application components -->
+    <Navigation :show="show" />
     <v-main>
-      <!-- Provides the application the proper gutter -->
+      <Header :show="show" @toggleNav="toggleNav" />
       <router-view></router-view>
     </v-main>
     <Footer />
@@ -25,6 +20,15 @@ export default {
     Footer,
     Navigation,
   },
+  data: function(){
+    return {
+      show: false
+    }
+  },methods:{
+    toggleNav: function(v){
+      this.show = v
+    }
+  }
 };
 </script>
 

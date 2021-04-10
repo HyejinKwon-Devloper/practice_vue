@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout mb-4>
-      <NoticeBoard />
+      <NoticeBoardList />
     </v-layout>
 
     <v-layout>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import NoticeBoard from "@/components/noticeBoard/NoticeBoard";
-import Statistcs from "@/components/statistics/Statistics";
+import NoticeBoardList from "@/views/noticeBoard/NoticeBoardList";
+import Statistcs from "@/views/statistics/Statistics";
 export default {
-  components: { NoticeBoard, Statistcs },
+  components: { NoticeBoardList, Statistcs },
 };
 </script>
 

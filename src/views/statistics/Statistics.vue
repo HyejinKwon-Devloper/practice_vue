@@ -1,5 +1,8 @@
 <template>
-  <v-card>
+  <v-card
+   v-scroll.self="() => {}"
+    class="overflow-y-auto"
+    max-height="inherit">
     <v-card-title>
       <v-icon
         :color="checking ? 'red lighten-2' : 'indigo'"
@@ -37,6 +40,13 @@
         stroke-linecap="round"
       ></v-sparkline>
     </v-sheet>
+    <!-- <v-list v-for="n in 100" :key="n">
+      <v-list-item>
+        <v-list-item-title>
+        {{ "test :" + n}}
+        </v-list-item-title>
+        </v-list-item>
+    </v-list> -->
   </v-card>
 </template>
 <script>

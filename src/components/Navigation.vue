@@ -1,10 +1,11 @@
 <template>
+
   <v-card>
-    <v-navigation-drawer dark absolute permanent right>
+     <v-navigation-drawer app :value="show" full-height>
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg" />
+            <img src="../assets/Jin.jpg" />
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -27,17 +28,22 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+       </v-navigation-drawer>
   </v-card>
+   
+
 </template>
 
 <script>
 export default {
+  props:{
+    show:{ type: Boolean, required: false, default: false}
+  },
   data() {
     return {
       items: [
         { title: "Home", icon: "mdi-home-city", link: "/" },
-        { title: "Test1", icon: "mdi-account", link: "/test1" },
+        { title: "공지사항", icon: "mdi-account", link: "/notice" },
         { title: "Test2", icon: "mdi-account-group-outline", link: "/test2" },
       ],
     };
