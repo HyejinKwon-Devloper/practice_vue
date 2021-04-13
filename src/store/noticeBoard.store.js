@@ -5,7 +5,7 @@ export const noticeBoard = {
 	},
 	mutations: {
 		addNotice(state, newItem) {
-			state.push(newItem)
+			state.noticeList.push(newItem)
 		}
 	},
 	actions: {
@@ -18,7 +18,7 @@ export const noticeBoard = {
 			return state.noticeList
 		},
 		getNoticeCount(state) {
-			return state.length
+			return state.noticeList.length
 		}
 	}
 }

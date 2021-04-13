@@ -1,49 +1,54 @@
 <template>
-  <v-card flat outlined rounded="lg" min-width="100%">
-    <v-card-title>공지사항</v-card-title>
-    <v-card-text>
-      <v-simple-table>
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left" v-for="key in getKeys()" :key="key">
-                {{ key }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in listItem" :key="item.id">
-              <td>{{ item.id }}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.contents }}</td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </v-card-text>
-  </v-card>
+	<v-card flat outlined rounded="lg" min-width="100%">
+		<v-card-title flat no-gutters outlined align-content-center
+			>공지사항</v-card-title
+		>
+		<v-card-text>
+			<v-card-subtitle class="text-left" v-model="totalCount"
+				>총 {{ totalCount }} 건</v-card-subtitle
+			>
+			<v-simple-table fixed-header dense>
+				<template v-slot:default>
+					<thead>
+						<tr>
+							<th class="text-center">
+								No.
+							</th>
+							<th class="text-center">
+								제목
+							</th>
+							<th class="text-center">
+								작성자
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item, index) in listItem" :key="index">
+							<td>{{ index + 1 }}</td>
+							<td :class="item.level === 'high' ? 'red--text' : ''">
+								<v-icon v-show="item.level === 'high'" small
+									>mdi-exclamation</v-icon
+								>
+								{{ item.title }}
+							</td>
+							<td>{{ item.writer }}</td>
+						</tr>
+					</tbody>
+				</template>
+			</v-simple-table>
+		</v-card-text>
+	</v-card>
 </template>
+
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters } = createNamespacedHelpers('noticeBoard')
 export default {
-  data: function() {
-    return {
-      listItem: [
-        { id: 1, title: "공지1", contents: "첫번째 공지사항 내용입니다." },
-        { id: 2, title: "공지2", contents: "두번째 공지사항 내용입니다." },
-        { id: 3, title: "공지3", contents: "세번째 공지사항 내용입니다." },
-        { id: 4, title: "공지4", contents: "네번째 공지사항 내용입니다." },
-        { id: 5, title: "공지5", contents: "다섯번째 공지사항 내용입니다." },
-      ],
-    };
-  },
-  methods: {
-    getKeys() {
-      if (this.listItem && this.listItem.length > 0) {
-        let one = this.listItem[0];
-        console.log(Object.keys(one));
-        return Object.keys(one);
-      }
-    },
-  },
-};
+	computed: {
+		...mapGetters({
+			totalCount: 'getNoticeCount',
+			listItem: 'getNoticeList'
+		})
+	}
+}
 </script>
