@@ -1,7 +1,9 @@
 export const noticeBoard = {
 	namespaced: true,
 	state: {
-		noticeList: []
+		noticeList: [
+			{idx: 0, title: '첫 공지', level: 'high', contents: '두근두근', writer: 'admin'}
+		]
 	},
 	mutations: {
 		addNotice(state, newItem) {

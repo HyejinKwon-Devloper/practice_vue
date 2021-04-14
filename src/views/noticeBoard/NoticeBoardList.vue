@@ -4,38 +4,35 @@
 			>공지사항</v-card-title
 		>
 		<v-card-text>
-			<v-card-subtitle class="text-left" v-model="totalCount"
-				>총 {{ totalCount }} 건</v-card-subtitle
-			>
-			<v-simple-table fixed-header dense>
-				<template v-slot:default>
-					<thead>
-						<tr>
-							<th class="text-center">
-								No.
-							</th>
-							<th class="text-center">
-								제목
-							</th>
-							<th class="text-center">
-								작성자
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item, index) in listItem" :key="index">
-							<td>{{ index + 1 }}</td>
-							<td :class="item.level === 'high' ? 'red--text' : ''">
-								<v-icon v-show="item.level === 'high'" small
-									>mdi-exclamation</v-icon
-								>
-								{{ item.title }}
-							</td>
-							<td>{{ item.writer }}</td>
-						</tr>
-					</tbody>
+				<v-data-table
+					:headers="headers"
+					hide-default-footer
+					:items="listItem"
+					item-key="idx"
+					show-expand
+					class="overflow-y-auto"
+					height="35vh"
+					@dblclick="clickedRow"
+					v-scroll.self="() => {}"
+				> 
+				<template v-slot:top>
+					<v-flex class="text-left">
+						총 {{ totalCount }} 건
+					</v-flex>
 				</template>
-			</v-simple-table>
+				<template v-slot:item.idx="{ index }">
+					{{ index + 1}}
+				</template>
+				<template v-slot:item.title="{ item }">
+					<td :class="item.level === 'high' && 'red--text' "> {{ item.title }} </td>
+				</template>
+				<template v-slot:expanded-item="{ headers, item }">
+					<td colspan="1" class="white__td text-center">
+						<v-icon>mdi-backspace-reverse-outline</v-icon>
+					</td>
+					<td :colspan="headers.length-1" class="white__td text-left">{{ item.contents }}</td>
+				</template>
+			</v-data-table>
 		</v-card-text>
 	</v-card>
 </template>
@@ -44,11 +41,34 @@
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('noticeBoard')
 export default {
+	data: function(){
+		return{
+			headers: [
+				{text: "No," , align: 'center', value: "idx"},
+				{text: "제목", align: 'center', value: "title"},
+				{text: "작성자", align: 'center' , value: 'writer'}
+			]
+		}
+	},
 	computed: {
 		...mapGetters({
 			totalCount: 'getNoticeCount',
 			listItem: 'getNoticeList'
 		})
+	},
+	methods: {
+		clickedRow(n){
+			console.log(n)
+		}
 	}
 }
 </script>
+
+<style scoped>
+.white__td {
+	padding:0px; 
+	margin:0px; 
+	background-color: white;
+	height: 100%;
+}
+</style>

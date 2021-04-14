@@ -3,11 +3,10 @@
 		<v-card flat>
 			<NoticeBoardList />
 
-			<v-card-actions justify-end>
+			<v-card-actions class="flex-row-reverse">
 				<v-icon color="teal darken-1" outline @click="toggleAddNoticeArea"
 					>mdi-plus-circle</v-icon
 				>
-				<!-- <AButton :type="'text'" btnText="등록" :text="true" /> -->
 			</v-card-actions>
 
 			<v-expand-transition>

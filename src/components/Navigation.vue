@@ -1,7 +1,7 @@
 <template>
 
   <v-card>
-     <v-navigation-drawer app :value="show" full-height>
+     <v-navigation-drawer app :value="show" full-height   style="opacity:1">
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
@@ -28,7 +28,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-       </v-navigation-drawer>
+    </v-navigation-drawer>
   </v-card>
    
 

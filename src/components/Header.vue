@@ -1,6 +1,5 @@
 <template>
     <v-app-bar
-      color="deep-purple accent-4"
       dark
       app
     >
@@ -51,7 +50,6 @@ export default {
   },
   methods: {
     handleNavagation: function(){
-      console.log(this.show)
       this.$emit('toggleNav', !this.show)
     }
   }
