@@ -1,12 +1,12 @@
 <template>
 	<v-card flat outlined rounded="lg">
 		<v-card-title>
-			공지사항 등록
+			{{ noticeTitle }}
 		</v-card-title>
 		<v-card-text>
 			<v-form ref="form" lazy-validation @submit.prevent="submit">
 				<v-text-field
-					v-model="title"
+					v-model="notice.title"
 					counter="50"
 					label="제목"
 					required
@@ -18,12 +18,12 @@
 				<v-textarea
 					counter="1000"
 					label="공지내용"
-					v-model="contents"
+					v-model="notice.contents"
 					@input="$v.contents.$touch()"
 					required
 				>
 				</v-textarea>
-				<v-radio-group row v-model="noticeLevel">
+				<v-radio-group row v-model="notice.level">
 					<template v-slot:label>
 						<h3><strong>중요도 :: </strong></h3>
 					</template>
@@ -72,16 +72,23 @@ const { mapActions } = createNamespacedHelpers('noticeBoard')
 export default {
 	mixins: [validationMixin],
 	components: { AButton },
-	data: () => ({
-		title: '',
-		contents: '',
-		noticeLevel: 'normal'
-	}),
+	props: {
+		noticeTitle: { type: String, required: true }
+	},
+	data: () => ({}),
 	validations: {
 		title: { required, maxLength: maxLength(50) },
 		contents: { required, maxLength: maxLength(1000) }
 	},
 	computed: {
+		notice: {
+			get() {
+				let init = this.$store.state.noticeBoard.notice
+				return this.$store.getters.getNotice
+					? this.$store.getters.getNotice
+					: init
+			}
+		},
 		checkTitleError() {
 			const errors = []
 			if (!this.$v.title.$dirty) return errors
@@ -100,9 +107,7 @@ export default {
 			this.$v.$touch()
 			if (!this.$v.$invalid) {
 				let notice = {
-					title: this.title,
-					contents: this.contents,
-					level: this.noticeLevel,
+					...this.notice,
 					writer: 'admin'
 				}
 				this.addNoticeList(notice)
@@ -112,9 +117,9 @@ export default {
 		},
 		clear() {
 			this.$v.$reset()
-			this.title = ''
-			this.contents = ''
-			this.noticeLevel = 'normal'
+			this.notice.title = ''
+			this.notice.contents = ''
+			this.notice.level = 'normal'
 		}
 	}
 }
