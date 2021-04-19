@@ -44,6 +44,7 @@ export default {
       items: [
         { title: "Home", icon: "mdi-home-city", link: "/" },
         { title: "공지사항", icon: "mdi-account", link: "/notice" },
+        { title: "작업목록", icon: "mdi-account", link: "/work" },
         { title: "Test2", icon: "mdi-account-group-outline", link: "/test2" },
       ],
     };
