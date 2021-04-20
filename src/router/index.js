@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainContainer from '@/components/MainContainer'
 import Contents from '@/components/Contents'
-import Test1 from '@/components/Test1'
+import NoticeBoard from '@/views/noticeBoard/NoticeBoard'
+import WorkInfo from '@/views/workList/WorkInfo'
 import Test2 from '@/components/Test2'
 
 Vue.use(Router)
@@ -16,8 +17,12 @@ export default new Router({
             component: MainContainer
         },
         {
-            path: '/test1',
-            component: Test1
+            component: NoticeBoard,
+            path: '/notice',
+        },
+        {
+            component: WorkInfo,
+            path: '/work',
         },
         {
             path: '/test2',
