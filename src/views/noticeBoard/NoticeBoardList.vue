@@ -40,10 +40,10 @@
 						</v-virtual-scroll>
 					</tbody>
 				</template> -->
-				<template v-slot:item.idx="index">
+				<template v-slot:[`item.idx`]="index">
 					{{ index + 1 }}
 				</template>
-				<template v-slot:item.title="item">
+				<template v-slot:[`item.title`]="item">
 					<td :class="item.level === 'high' && 'red--text'">
 						{{ item.title }}
 					</td>
