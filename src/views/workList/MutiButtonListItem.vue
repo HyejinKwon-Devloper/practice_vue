@@ -1,6 +1,6 @@
 <template>
-	<v-flex>
-		<v-list-item-title class="mt-1 text-left">
+	<v-flex class="text-left">
+		<v-list-item-title class="mt-1">
 			{{ title }}
 		</v-list-item-title>
 		<AButton

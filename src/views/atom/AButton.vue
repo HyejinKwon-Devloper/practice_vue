@@ -10,6 +10,7 @@
 		@click="handleBtn"
 		:left="true"
 		:small="small"
+		:fab="fab"
 		:max-height="maxHeight"
 		:max-width="maxWidth"
 		:min-height="minHeight"
@@ -38,7 +39,7 @@ export default {
 		align: { type: String },
 		shape: { type: String },
 		small: { type: Boolean },
-		btnAction: Function,
+		fab: Boolean,
 		maxWidth: String,
 		maxHeight: String,
 		minWidth: String,
@@ -46,8 +47,7 @@ export default {
 	},
 	methods: {
 		handleBtn: function() {
-			console.log('AButton')
-			this.$emit('btnAction')
+			this.$emit('btnAction', this.btnText)
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-bind="dialog" width="500">
+	<v-dialog v-bind:value="dialog" width="500">
 		<v-card>
 			<v-card-title class="headline grey lighten-2">
 				Privacy Policy
@@ -30,11 +30,12 @@
 <script>
 export default {
 	props: {
-		dialog: { type: Boolean, required: false, default: false }
+		dialog: { type: Boolean, required: false, default: false },
+		btnText: String
 	},
 	methods: {
 		handleDialog() {
-			this.$emit('handleDialog')
+			this.$emit('handleDialog', this.$props.btnText)
 		}
 	}
 }

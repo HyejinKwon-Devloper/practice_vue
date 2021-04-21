@@ -8,19 +8,33 @@
 							{{ item.title }}
 						</v-list-item-subtitle>
 					</v-flex>
-					<!-- <MultiButtonListItem
-						v-if="item.type === 'multiBtn'"
-						:title="item.contents"
-						:btnList="item.btnInfo"
-					/> -->
 					<component
 						:is="checkPoint(item.type)"
 						:title="item.contents"
 						:btnList="item.btnInfo"
-						:btnAction="item.btnAction"
 					>
-						{{ item.dialog && <ADialog :dialog="item.dialog" /> }}
 					</component>
+					<v-text-field
+						v-show="checkPoint(item.type) === ''"
+						v-model="item.contents"
+						outlined
+						label=""
+						dense
+						disabled
+						type="text"
+					>
+						<template v-slot:append>
+							<v-fade-transition leave-absolute>
+								<v-btn
+									width="24"
+									height="24"
+									src="https://cdn.vuetifyjs.com/images/logos/v-alt.svg"
+									alt=""
+									>수정</v-btn
+								>
+							</v-fade-transition>
+						</template>
+					</v-text-field>
 				</v-layout>
 			</v-list-item-content>
 		</v-list-item>
@@ -47,48 +61,103 @@ export default {
 				case 'contentsAndAction':
 					selectedComponent = ContentsAndAction
 					break
+				case 'custom':
+					break
 			}
 			return selectedComponent
 		},
-		handleDialog() {
-			this.dialog = !this.dialog
+		handleDialog(key, idx) {
+			let row = this.listItem[idx].btnInfo
+			let btnIdx = row.findIndex(b => b.btnText === key)
+			row[btnIdx].dialog = !row[btnIdx].dialog
+
+			let targetList = this.listItem
+			targetList[idx].btnInfo = row
+			this.listItem = targetList
 		}
 	},
 	data: function() {
 		return {
 			listItem: [
 				{
+					type: 'multiBtn',
 					title: '설치위치',
-					btnInfo: [{ btnText: '첨부', preIcon: 'mdi-camera' }]
+					btnInfo: [
+						{
+							btnText: '첨부',
+							preIcon: 'mdi-camera',
+							btnAction: () => {},
+							dialog: false
+						}
+					]
+				},
+				{
+					type: 'custom',
+					title: '설치위치(코디)',
+					contents: '얼음 a/s 받음',
+					btnInfo: [
+						{
+							btnText: '첨부',
+							preIcon: 'mdi-camera',
+							btnAction: () => {},
+							dialog: false
+						}
+					]
 				},
 				{
 					type: 'contentsAndAction',
 					title: '콜상담 내용',
 					contents: '-',
-					btnInfo: [{ btnText: '상담이력', btnAction: this.handleDialog }],
-					dialog: false
+					btnInfo: [
+						{
+							btnText: '상담이력',
+							btnAction: key => this.handleDialog(key, 2),
+							dialog: false
+						}
+					]
 				},
 				{
 					type: 'multiBtn',
 					title: '접수유형',
 					contents: '설치/해체-이전설치',
 					btnInfo: [
-						{ btnText: '첨부', preIcon: 'mdi-camera' },
-						{ btnText: '첨부', preIcon: 'mdi-camera' }
+						{
+							btnText: '스마트부품조회',
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '현장처리정보',
+							btnAction: () => {},
+							dialog: false
+						}
 					]
 				},
 				{
 					type: 'contentsAndAction',
 					title: '설치이력',
 					contents: '어쩌구저쩌구',
-					btnInfo: [{ btnText: '상세조회', style: { outlined: true } }]
+					btnInfo: [
+						{
+							btnText: '상세조회',
+							style: { outlined: true },
+							btnAction: () => {},
+							dialog: false
+						}
+					]
 				},
 				{
 					type: 'contentsAndAction',
 					title: '접수자',
 					contents: '-',
 					btnInfo: [
-						{ icon: true, preIcon: 'mdi-phone', style: { outlined: false } }
+						{
+							icon: true,
+							preIcon: 'mdi-phone',
+							style: { outlined: false, small: true },
+							btnAction: () => {},
+							dialog: false
+						}
 					]
 				}
 			]
