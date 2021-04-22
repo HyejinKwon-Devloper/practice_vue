@@ -1,5 +1,6 @@
 <template>
 	<v-flex class="text-left">
+		<slot name="prepend"/>
 		<v-list-item-title class="mt-1">
 			{{ title }}
 		</v-list-item-title>

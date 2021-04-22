@@ -13,28 +13,31 @@
 						:title="item.contents"
 						:btnList="item.btnInfo"
 					>
-					</component>
-					<v-text-field
-						v-show="checkPoint(item.type) === ''"
-						v-model="item.contents"
-						outlined
-						label=""
-						dense
-						disabled
-						type="text"
-					>
-						<template v-slot:append>
-							<v-fade-transition leave-absolute>
-								<v-btn
-									width="24"
-									height="24"
-									src="https://cdn.vuetifyjs.com/images/logos/v-alt.svg"
-									alt=""
-									>수정</v-btn
-								>
-							</v-fade-transition>
+						<template v-slot:prepend v-if="item.customContents">
+							<v-text-field
+								class="mt-1"
+								v-model="item.contents"
+								outlined
+								label=""
+								dense
+								disabled
+								type="text"
+							>
+								<template v-slot:append>
+									<v-fade-transition leave-absolute>
+										<v-btn
+											width="24"
+											height="24"
+											src="https://cdn.vuetifyjs.com/images/logos/v-alt.svg"
+											alt=""
+											>수정</v-btn
+										>
+									</v-fade-transition>
+								</template>
+							</v-text-field>
 						</template>
-					</v-text-field>
+					</component>
+				<v-divider class="mt-2"/>
 				</v-layout>
 			</v-list-item-content>
 		</v-list-item>
@@ -43,13 +46,11 @@
 
 <script>
 import AButton from '@/views/atom/AButton'
-import ADialog from '@/views/atom/ADialog'
 import MultiButtonListItem from './MutiButtonListItem'
 import ContentsAndAction from './ContentsAndAction'
 export default {
 	components: {
 		AButton,
-		ADialog
 	},
 	methods: {
 		checkPoint(type) {
@@ -92,9 +93,8 @@ export default {
 					]
 				},
 				{
-					type: 'custom',
+					type: 'multiBtn',
 					title: '설치위치(코디)',
-					contents: '얼음 a/s 받음',
 					btnInfo: [
 						{
 							btnText: '첨부',
@@ -102,12 +102,14 @@ export default {
 							btnAction: () => {},
 							dialog: false
 						}
-					]
+					],
+					customContents: true,
+					customName : 'custom'
 				},
 				{
-					type: 'contentsAndAction',
+					type: 'multiBtn',
 					title: '콜상담 내용',
-					contents: '-',
+					contents: '',
 					btnInfo: [
 						{
 							btnText: '상담이력',

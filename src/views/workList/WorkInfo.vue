@@ -11,6 +11,8 @@
 			</v-flex>
 			<v-divider />
 			<v-flex>
+				<v-subheader><h4 class="text-no-wrap" style="background-image: linear-gradient(transparent 60%, #F8CD07 40%)">작업정보확인</h4></v-subheader>
+				<v-divider/>
 				<WorkTodoList />
 			</v-flex>
 		</v-layout>

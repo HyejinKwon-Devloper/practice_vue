@@ -1,5 +1,6 @@
 <template>
 	<v-flex>
+		<slot name="prepend"/>
 		<v-layout align-content-space-between>
 			<v-flex
 				class="mt-1 text-left"
@@ -36,6 +37,7 @@
 				</v-flex>
 			</v-flex>
 		</v-layout>
+		<slot name="append"/>
 	</v-flex>
 </template>
 
