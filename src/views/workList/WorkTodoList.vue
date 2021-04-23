@@ -9,27 +9,24 @@
 						</v-list-item-subtitle>
 					</v-flex>
 					<component
-						:is="checkPoint(item.type)"
+						:is="item.component"
 						:title="item.contents"
 						:btnList="item.btnInfo"
 					>
 						<template v-slot:prepend v-if="item.customContents">
 							<v-text-field
-								class="mt-1"
+								class="ma-1"
 								v-model="item.contents"
 								outlined
 								label=""
 								dense
 								disabled
+								hide-details
 								type="text"
 							>
 								<template v-slot:append>
 									<v-fade-transition leave-absolute>
-										<v-btn
-											width="24"
-											height="24"
-											src="https://cdn.vuetifyjs.com/images/logos/v-alt.svg"
-											alt=""
+										<v-btn plain outlined width="24" height="24" alt=""
 											>수정</v-btn
 										>
 									</v-fade-transition>
@@ -37,7 +34,7 @@
 							</v-text-field>
 						</template>
 					</component>
-				<v-divider class="mt-2"/>
+					<v-divider class="mt-2" />
 				</v-layout>
 			</v-list-item-content>
 		</v-list-item>
@@ -46,24 +43,31 @@
 
 <script>
 import AButton from '@/views/atom/AButton'
-import MultiButtonListItem from './MutiButtonListItem'
-import ContentsAndAction from './ContentsAndAction'
+
 export default {
 	components: {
-		AButton,
+		AButton
 	},
+	computed: {},
 	methods: {
-		checkPoint(type) {
+		dynamicImport(type) {
 			let selectedComponent = ''
 			switch (type) {
 				case 'multiBtn':
-					selectedComponent = MultiButtonListItem
+					selectedComponent = () => import('./MultiButtonListItem')
 					break
 				case 'contentsAndAction':
-					selectedComponent = ContentsAndAction
+					selectedComponent = () => import('./ContentsAndAction')
+					break
+				case 'selectContnets':
+					selectedComponent = () => import('./SelectorContents')
+
+					break
+				case 'radioContents':
+					selectedComponent = () => import('./RadioContents')
 					break
 				case 'custom':
-					break
+					return
 			}
 			return selectedComponent
 		},
@@ -82,63 +86,101 @@ export default {
 			listItem: [
 				{
 					type: 'multiBtn',
+					component: '',
 					title: '설치위치',
 					btnInfo: [
 						{
 							btnText: '첨부',
 							preIcon: 'mdi-camera',
 							btnAction: () => {},
-							dialog: false
+							dialog: false,
+							style: { outlined: true, small: true }
 						}
 					]
 				},
 				{
 					type: 'multiBtn',
+					component: '',
 					title: '설치위치(코디)',
 					btnInfo: [
 						{
 							btnText: '첨부',
 							preIcon: 'mdi-camera',
 							btnAction: () => {},
-							dialog: false
+							dialog: false,
+							style: { outlined: true, small: true }
 						}
 					],
 					customContents: true,
-					customName : 'custom'
+					customName: 'custom'
 				},
 				{
 					type: 'multiBtn',
+					component: '',
 					title: '콜상담 내용',
 					contents: '',
 					btnInfo: [
 						{
 							btnText: '상담이력',
 							btnAction: key => this.handleDialog(key, 2),
-							dialog: false
+							dialog: false,
+							style: { outlined: true, small: true }
+						}
+					]
+				},
+				{
+					type: 'selectContnets',
+					component: '',
+					title: '설치장소',
+					btnInfo: [
+						{
+							idx: 0,
+							items: ['가정', '재택'],
+							selectEvt: () => {}
+						},
+						{
+							idx: 1,
+							items: ['주택', '상가'],
+							selectEvt: () => {}
+						}
+					]
+				},
+				{
+					type: 'selectContnets',
+					component: '',
+					title: '다중시설',
+					btnInfo: [
+						{
+							idx: 0,
+							items: ['해당안됨', '해당'],
+							selectEvt: () => {}
 						}
 					]
 				},
 				{
 					type: 'multiBtn',
+					component: '',
 					title: '접수유형',
 					contents: '설치/해체-이전설치',
 					btnInfo: [
 						{
 							btnText: '스마트부품조회',
 							btnAction: () => {},
-							dialog: false
+							dialog: false,
+							style: { outlined: true, small: true }
 						},
 						{
 							btnText: '현장처리정보',
 							btnAction: () => {},
-							dialog: false
+							dialog: false,
+							style: { outlined: true, small: true }
 						}
 					]
 				},
 				{
 					type: 'contentsAndAction',
+					component: '',
 					title: '설치이력',
-					contents: '어쩌구저쩌구',
 					btnInfo: [
 						{
 							btnText: '상세조회',
@@ -150,6 +192,7 @@ export default {
 				},
 				{
 					type: 'contentsAndAction',
+					component: '',
 					title: '접수자',
 					contents: '-',
 					btnInfo: [
@@ -161,9 +204,57 @@ export default {
 							dialog: false
 						}
 					]
+				},
+				{
+					type: 'multiBtn',
+					component: '',
+					title: '기타',
+					btnInfo: [
+						{
+							btnText: '상품추천',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '현장소리',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '서명',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '모터설치',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '모터반환',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						},
+						{
+							btnText: '고객상담',
+							style: { outlined: true, small: true, width: '90px' },
+							btnAction: () => {},
+							dialog: false
+						}
+					]
 				}
 			]
 		}
+	},
+	mounted() {
+		this.listItem.forEach(item => {
+			item.component = this.dynamicImport(item.type)
+		})
 	}
 }
 </script>

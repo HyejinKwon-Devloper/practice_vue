@@ -1,6 +1,6 @@
 <template>
 	<v-flex>
-		<slot name="prepend"/>
+		<slot name="prepend" />
 		<v-layout align-content-space-between>
 			<v-flex
 				class="mt-1 text-left"
@@ -13,7 +13,6 @@
 			<v-flex justify-end class="text-right">
 				<v-flex v-for="btn in btnList" :key="btn.btnText">
 					<AButton
-						class="ma-1"
 						:icon="btn.icon"
 						:btnText="btn.btnText"
 						:key="btn.btnText"
@@ -37,7 +36,7 @@
 				</v-flex>
 			</v-flex>
 		</v-layout>
-		<slot name="append"/>
+		<slot name="append" />
 	</v-flex>
 </template>
 
@@ -45,6 +44,7 @@
 import AButton from '@/views/atom/AButton'
 import ADialog from '@/views/atom/ADialog'
 export default {
+	name: 'ContentsAndAction',
 	components: { AButton, ADialog },
 	props: {
 		title: String,
