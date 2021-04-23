@@ -1,25 +1,4 @@
 <template>
-	<!-- <v-flex >
-		<slot name="prepend" />
-		<v-list-item-title class="mt-1">
-			{{ title }}
-		</v-list-item-title>
-		<AButton
-			class="ma-1"
-			v-for="btn in btnList"
-			:key="btn.title"
-			small
-			outlined
-			plain
-			max-width="152px"
-			max-height="40px"
-			min-width="150px"
-			min-height="40px"
-			:btnText="btn.btnText"
-			:preIcon="btn.preIcon"
-			:postIcon="btn.postIcon"
-		/>
-	</v-flex> -->
 	<v-layout column>
 		<v-flex>
 			<slot name="prepend" />
