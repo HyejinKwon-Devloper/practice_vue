@@ -1,8 +1,7 @@
 <template>
 	<v-layout>
 		<v-radio-group v-model="row" row>
-			<v-radio label="Option 1" value="radio-1"></v-radio>
-			<v-radio label="Option 2" value="radio-2"></v-radio>
+			<v-radio v-for="rdo in btnList" :key="rdo.btnValue" :label="rdo.btnText" :value="rdo.btnValue" />
 		</v-radio-group>
 	</v-layout>
 </template>

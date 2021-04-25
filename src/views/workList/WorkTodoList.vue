@@ -61,7 +61,6 @@ export default {
 					break
 				case 'selectContnets':
 					selectedComponent = () => import('./SelectorContents')
-
 					break
 				case 'radioContents':
 					selectedComponent = () => import('./RadioContents')
@@ -126,6 +125,25 @@ export default {
 							dialog: false,
 							style: { outlined: true, small: true }
 						}
+					]
+				},
+				{
+					type: 'radioContents',
+					component: '',
+					title: '수도시설',
+					btnInfo: [
+						{
+							idx: 0,
+							btnText: '상수도',
+							btnValue: 'top',
+							selectEvt: () => {}
+						},
+							{
+							idx: 0,
+							btnText: '하수도',
+							btnValue: 'bottom',
+							selectEvt: () => {}
+						},
 					]
 				},
 				{
