@@ -23,36 +23,45 @@
 									justify-space-between
 									class="text-left"
 								>
-									<v-flex
-										d-inline-flex
-										class="subtitle-1"
-										style="color:#64A0E6"
-										order-xs1
-										>상태</v-flex
-									>
-									<v-flex d-inline-flex class="mx-1" order-xs2>고객명</v-flex>
-									<v-flex d-inline-flex class="mx-1" order-xs4>
-										<v-sheet outlined rounded="lg">
+									<v-layout>
+										<v-flex
+											d-inline-flex
+											align-self-center
+											style="color:#64A0E6"
+											order-xs1
+											>상태</v-flex
+										>
+										<v-flex d-inline-flex class="mx-1" order-xs2>고객명</v-flex>
+										<v-flex d-inline-flex class="mx-1" order-xs3>
 											<v-chip
 												small
-												color="white"
+												outlined
+												label
 												style="padding: 0 5px!important"
 												>G1</v-chip
 											>
-										</v-sheet>
-									</v-flex>
-									<v-flex d-inline-flex class="mx-1" order-xs3>
-										<v-chip
-											small
-											label
-											outlined
-											style="padding: 0 5px!important"
-											>긴급/당일콜</v-chip
-										>
-									</v-flex>
+										</v-flex>
+										<v-flex d-inline-flex class="mx-1" order-xs4>
+											<v-chip
+												small
+												label
+												outlined
+												style="padding: 0 5px!important"
+												>긴급/당일콜</v-chip
+											>
+										</v-flex>
+									</v-layout>
 								</v-flex>
-								<v-flex align-self-start>
-									<span class="text--secondary">제품번호</span>
+								<v-flex>
+									<v-layout justify-space-between>
+										<v-flex justify-start class="text-left text--secondary"
+											>제품번호</v-flex
+										>
+										<v-spacer />
+										<v-flex justify-end class="text-right text--secondary"
+											>작업유형</v-flex
+										>
+									</v-layout>
 								</v-flex>
 							</v-layout>
 						</v-flex>
