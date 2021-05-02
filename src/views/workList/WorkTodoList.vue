@@ -1,6 +1,18 @@
 <template>
-	<v-list>
-		<v-list-item dense v-for="item in listItem" :key="item.title">
+<v-flex >
+	<v-card v-for="l in listItem" :key="l.key" flat>
+	<v-divider />
+	<v-subheader
+		><h4
+			class="text-no-wrap"
+			style="background-image: linear-gradient(transparent 60%, #F8CD07 40%)"
+		>
+			{{ l.key }}
+		</h4>
+	</v-subheader>
+	<v-divider class="mt-1 mx-4" />
+	<v-list >
+		<v-list-item v-show="l.infos" v-for="item in l.infos" :key="item.title">
 			<v-list-item-content>
 				<v-layout column>
 					<v-flex>
@@ -14,24 +26,9 @@
 						:btnList="item.btnInfo"
 					>
 						<template v-slot:prepend v-if="item.customContents">
-							<v-text-field
-								class="ma-1"
-								v-model="item.contents"
-								outlined
-								label=""
-								dense
-								disabled
-								hide-details
-								type="text"
-							>
-								<template v-slot:append>
-									<v-fade-transition leave-absolute>
-										<v-btn plain outlined width="24" height="24" alt=""
-											>수정</v-btn
-										>
-									</v-fade-transition>
-								</template>
-							</v-text-field>
+							<component :is="item.custom.customName"
+								:item="item.custom"
+							/>
 						</template>
 					</component>
 					<v-divider class="mt-2" />
@@ -39,6 +36,8 @@
 			</v-list-item-content>
 		</v-list-item>
 	</v-list>
+</v-card>
+</v-flex>
 </template>
 
 <script>
@@ -46,7 +45,7 @@ import AButton from '@/views/atom/AButton'
 
 export default {
 	components: {
-		AButton
+		AButton,
 	},
 	computed: {},
 	methods: {
@@ -69,210 +68,36 @@ export default {
 					return
 			}
 			return selectedComponent
-		},
-		handleDialog(key, idx) {
-			let row = this.listItem[idx].btnInfo
-			let btnIdx = row.findIndex(b => b.btnText === key)
-			row[btnIdx].dialog = !row[btnIdx].dialog
-
-			let targetList = this.listItem
-			targetList[idx].btnInfo = row
-			this.listItem = targetList
 		}
+	},
+	props:{
+		items: Array
 	},
 	data: function() {
 		return {
 			listItem: [
 				{
-					type: 'multiBtn',
-					component: '',
-					title: '설치위치',
-					btnInfo: [
-						{
-							btnText: '첨부',
-							preIcon: 'mdi-camera',
-							btnAction: () => {},
-							dialog: false,
-							style: { outlined: true, small: true }
-						}
-					]
-				},
-				{
-					type: 'multiBtn',
-					component: '',
-					title: '설치위치(코디)',
-					btnInfo: [
-						{
-							btnText: '첨부',
-							preIcon: 'mdi-camera',
-							btnAction: () => {},
-							dialog: false,
-							style: { outlined: true, small: true }
-						}
-					],
-					customContents: true,
-					customName: 'custom'
-				},
-				{
-					type: 'multiBtn',
-					component: '',
-					title: '콜상담 내용',
-					contents: '',
-					btnInfo: [
-						{
-							btnText: '상담이력',
-							btnAction: key => this.handleDialog(key, 2),
-							dialog: false,
-							style: { outlined: true, small: true }
-						}
-					]
-				},
-				{
-					type: 'radioContents',
-					component: '',
-					title: '수도시설',
-					btnInfo: [
-						{
-							idx: 0,
-							btnText: '상수도',
-							btnValue: 'top',
-							selectEvt: () => {}
-						},
-							{
-							idx: 0,
-							btnText: '하수도',
-							btnValue: 'bottom',
-							selectEvt: () => {}
-						},
-					]
-				},
-				{
-					type: 'selectContnets',
-					component: '',
-					title: '설치장소',
-					btnInfo: [
-						{
-							idx: 0,
-							items: ['가정', '재택'],
-							selectEvt: () => {}
-						},
-						{
-							idx: 1,
-							items: ['주택', '상가'],
-							selectEvt: () => {}
-						}
-					]
-				},
-				{
-					type: 'selectContnets',
-					component: '',
-					title: '다중시설',
-					btnInfo: [
-						{
-							idx: 0,
-							items: ['해당안됨', '해당'],
-							selectEvt: () => {}
-						}
-					]
-				},
-				{
-					type: 'multiBtn',
-					component: '',
-					title: '접수유형',
-					contents: '설치/해체-이전설치',
-					btnInfo: [
-						{
-							btnText: '스마트부품조회',
-							btnAction: () => {},
-							dialog: false,
-							style: { outlined: true, small: true }
-						},
-						{
-							btnText: '현장처리정보',
-							btnAction: () => {},
-							dialog: false,
-							style: { outlined: true, small: true }
-						}
-					]
-				},
-				{
-					type: 'contentsAndAction',
-					component: '',
-					title: '설치이력',
-					btnInfo: [
-						{
-							btnText: '상세조회',
-							style: { outlined: true },
-							btnAction: () => {},
-							dialog: false
-						}
-					]
-				},
-				{
-					type: 'contentsAndAction',
-					component: '',
-					title: '접수자',
-					contents: '-',
-					btnInfo: [
-						{
-							icon: true,
-							preIcon: 'mdi-phone',
-							style: { outlined: false, small: true },
-							btnAction: () => {},
-							dialog: false
-						}
-					]
-				},
-				{
-					type: 'multiBtn',
-					component: '',
-					title: '기타',
-					btnInfo: [
-						{
-							btnText: '상품추천',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						},
-						{
-							btnText: '현장소리',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						},
-						{
-							btnText: '서명',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						},
-						{
-							btnText: '모터설치',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						},
-						{
-							btnText: '모터반환',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						},
-						{
-							btnText: '고객상담',
-							style: { outlined: true, small: true, width: '90px' },
-							btnAction: () => {},
-							dialog: false
-						}
-					]
+					key: '',
+					infos:[]
 				}
 			]
 		}
 	},
-	mounted() {
-		this.listItem.forEach(item => {
+
+	created(){
+		this.listItem = this.items
+		this.listItem && this.listItem.forEach((l) => {
+			l.infos.forEach(item => {
 			item.component = this.dynamicImport(item.type)
+			if(item.customContents){
+				this.$options.components = {
+					...this.$options.components,
+					[item.custom.customName] :  ()=> import('./'+item.custom.customName)
+				}
+			}
+			})
 		})
+		
 	}
 }
 </script>
