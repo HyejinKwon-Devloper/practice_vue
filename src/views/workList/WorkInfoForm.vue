@@ -12,12 +12,18 @@
 								rounded="lg"
 								class="d-flex ma-auto"
 								style="color: white; align-items:center; justify-content:center"
-								>
-								{{
-									cardInfo.resevedTime
-								}}
+							>
+								{{ cardInfo.resevedTime }}
 							</v-sheet>
-							<v-btn small width="63px" dense plain outlined class="labelBtn my-1">고장진단</v-btn>
+							<v-btn
+								small
+								width="63px"
+								dense
+								plain
+								outlined
+								class="labelBtn my-1"
+								>고장진단</v-btn
+							>
 						</v-flex>
 						<v-flex xs9 mx-1>
 							<v-layout column>
@@ -35,8 +41,10 @@
 											order-xs1
 											>{{ cardInfo.state }}</v-flex
 										>
-										<v-flex d-inline-flex class="mx-1" order-xs2>{{ cardInfo.cstmNm }}</v-flex>
-										<v-flex d-inline-flex class="mx-1" order-xs3 >
+										<v-flex d-inline-flex class="mx-1" order-xs2>{{
+											cardInfo.cstmNm
+										}}</v-flex>
+										<v-flex d-inline-flex class="mx-1" order-xs3>
 											<v-chip
 												v-show="cardInfo.grpNm"
 												small
@@ -60,20 +68,20 @@
 								</v-flex>
 								<v-flex>
 									<v-layout justify-space-between>
-										<v-flex justify-start class="text-left text--secondary"
-											>{{ cardInfo.prodNum }}</v-flex
-										>
+										<v-flex justify-start class="text-left text--secondary">{{
+											cardInfo.prodNum
+										}}</v-flex>
 										<v-spacer />
-										<v-flex justify-end class="text-right text--secondary"
-											>{{ cardInfo.workType }}</v-flex
-										>
+										<v-flex justify-end class="text-right text--secondary">{{
+											cardInfo.workType
+										}}</v-flex>
 									</v-layout>
 								</v-flex>
 							</v-layout>
 						</v-flex>
 					</v-layout>
 					<v-card-actions>
-						<v-btn width="100%" dense plain outlined >
+						<v-btn width="100%" dense plain outlined @click="nextStep">
 							main btn
 						</v-btn>
 					</v-card-actions>
@@ -82,25 +90,29 @@
 				<v-divider />
 
 				<v-flex>
-					<v-card-subtitle class="text-left caption text--secondary"
-						>{{ cardInfo.receiptType }}</v-card-subtitle
-					>
+					<v-card-subtitle class="text-left caption text--secondary">{{
+						cardInfo.receiptType
+					}}</v-card-subtitle>
 				</v-flex>
 			</v-layout>
 
 			<v-divider vertical />
 
 			<v-flex xs1 align-self-center>
-				<v-card-actions  class="pa-0">
+				<v-card-actions class="pa-0">
 					<v-icon @click="show = !show" class="ma-auto">{{
 						show ? 'mdi-chevron-up' : 'mdi-chevron-down'
 					}}</v-icon>
 				</v-card-actions>
 			</v-flex>
 		</v-layout>
-		<MiddleArea  v-show="show"  />
 		<v-expand-transition>
-			<WorkTodoList v-show="show" :items="cardInfo.infoList"/>
+			<div>
+				<v-divider />
+				<MiddleArea v-show="show" />
+				<WorkTodoList v-show="show" :items="cardInfo.infoList" />
+				<CustomerInfo v-show="show" />
+			</div>
 		</v-expand-transition>
 	</v-card>
 </template>
@@ -108,27 +120,34 @@
 <script>
 import WorkTodoList from '@/views/workList/WorkTodoList'
 import MiddleArea from '@/views/workList/MiddleArea'
+import CustomerInfo from '@/views/workList/CustomerInfo'
 
 export default {
-	components: { WorkTodoList , MiddleArea},
+	components: { WorkTodoList, MiddleArea, CustomerInfo },
+	name: 'WorkInfoForm',
 	props: {
-		cardInfo : {
-			type: Object, 
-			required: true, 
-			default: function(){
+		cardInfo: {
+			type: Object,
+			required: true,
+			default: function() {
 				return {
-					resevedTime: String, 
-					state : String,
+					resevedTime: String,
+					state: String,
 					cstmNm: String,
 					grpNm: String,
 					call: String,
 					prodNum: String,
 					workType: String,
 					receiptType: String,
-					infoList: Array, 
+					infoList: Array,
 					otherAction: Object
 				}
 			}
+		}
+	},
+	methods: {
+		nextStep() {
+			console.log('clicked')
 		}
 	},
 	data: function() {
@@ -143,5 +162,4 @@ export default {
 .labelBtn
 	font-size: 12px
 	border-color: grey
-
 </style>
