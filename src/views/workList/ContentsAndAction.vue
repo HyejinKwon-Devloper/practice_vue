@@ -18,10 +18,10 @@
 						:key="btn.btnText"
 						:preIcon="btn.preIcon"
 						:postIcon="btn.postIcon"
-						:small="btn.style ? btn.style.small : false"
+						:small="btn.small"
 						@btnAction="btn.btnAction"
 						plain
-						:outlined="btn.style ? btn.style.outlined : true"
+						:outlined="btn.outlined"
 						:max-width="btn.icon ? undefined : '152px'"
 						:max-height="btn.icon ? undefined : '40px'"
 					>
@@ -55,7 +55,6 @@ export default {
 					icon: Boolean,
 					preIcon: String,
 					postIcon: String,
-					style: { outlined: Boolean, small: Boolean },
 					btnAction: Function,
 					dialog: Boolean
 				}

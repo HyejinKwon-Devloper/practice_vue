@@ -59,9 +59,11 @@ export default {
 									btnText: '첨부',
 									preIcon: 'mdi-camera',
 									btnAction: () => {},
+									outlined: true, 
+									small: true, 
 									dialog: false,
 									dialogContents: '',
-									style: { outlined: true, small: true }
+								
 								}
 							]
 						},
@@ -75,7 +77,8 @@ export default {
 									preIcon: 'mdi-camera',
 									btnAction: () => {},
 									dialog: false,
-									style: { outlined: true, small: true }
+									outlined: true, 
+									small: true
 								}
 							],
 							customContents: true,
@@ -94,7 +97,8 @@ export default {
 									btnText: '상담이력',
 									btnAction: key => this.handleDialog(key, 2),
 									dialog: false,
-									style: { outlined: true, small: true }
+									outlined: true, 
+									small: true
 								}
 							]
 						},
@@ -201,39 +205,57 @@ export default {
 							btnInfo: [
 								{
 									btnText: '상품추천',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
 									btnAction: () => {},
+									size:4,
+									width: '100%',
 									dialog: false
 								},
 								{
 									btnText: '현장소리',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
+									width: '100%',
 									btnAction: () => {},
-									dialog: false
+									dialog: false,
+									size: 4
 								},
 								{
 									btnText: '서명',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
+									width: '100%',
 									btnAction: () => {},
-									dialog: false
+									dialog: false,
+									size: 4,
 								},
 								{
 									btnText: '모터설치',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
+									width: '100%',
 									btnAction: () => {},
-									dialog: false
+									dialog: false,
+									size: 3,
 								},
 								{
 									btnText: '모터반환',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
+									width: '100%',
 									btnAction: () => {},
-									dialog: false
+									dialog: false,
+									size: 3,
 								},
 								{
 									btnText: '고객상담',
-									style: { outlined: true, small: true, width: '90px' },
+									outlined: true, 
+									small: true, 
+									width: '100%',
 									btnAction: () => {},
-									dialog: false
+									dialog: false,
+									size: 3,
 								}
 							]}
 						]}

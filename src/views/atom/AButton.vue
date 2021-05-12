@@ -11,6 +11,8 @@
 		:left="true"
 		:small="small"
 		:fab="fab"
+		:width="width"
+		:height="height"
 		:max-height="maxHeight"
 		:max-width="maxWidth"
 		:min-height="minHeight"
@@ -40,6 +42,8 @@ export default {
 		shape: { type: String },
 		small: { type: Boolean },
 		fab: Boolean,
+		width: String,
+		height: String,
 		maxWidth: String,
 		maxHeight: String,
 		minWidth: String,

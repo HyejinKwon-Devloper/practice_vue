@@ -7,15 +7,11 @@
 			</v-list-item-title>
 		</v-flex>
 		<v-flex>
-			<v-layout align-content-start>
-				<v-flex text-left xs12>
+			<v-layout align-content-start wrap>
+				<v-flex text-left :class="`xs`+btn.size" v-for="btn in btnList" :key="btn.title">
 					<AButton
-						class="ma-1"
-						v-for="btn in btnList"
-						:key="btn.title"
-						:class="btnList.length > 1 ? 'xs6' : 'xs12'"
-						:outlined="btn.style && btn.style.outlined"
-						:min-width="btn.style && btn.style.width"
+						:outlined="btn.outlined"
+						:width="btn.width"
 						min-height="40px"
 						plain
 						:btnText="btn.btnText"
@@ -43,12 +39,11 @@ export default {
 						icon: Boolean,
 						preIcon: String,
 						postIcon: String,
-						style: {
-							outlined: { type: Boolean, required: false, default: true },
-							small: Boolean,
-							width: String,
-							height: String
-						},
+						size: Number,
+						outlined: { type: Boolean, required: false, default: true },
+						small: Boolean,
+						width: String,
+						height: String,
 						btnAction: Function,
 						dialog: Boolean
 					}
